@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Sales and Inventory Store</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <!-- Welcome Popup -->
+    <div id="welcome-popup">
+        <h1>Welcome to the Car Sales and Inventory Store!</h1>
+        <p>Explore our fantastic range of cars!</p>
+        <button id="start-shopping-btn" onclick="startShopping()">Start Shopping</button>
+
+        <!-- Car Logos under Welcome Section -->
+        <div id="car-logos">
+            <img src="images/logo-toyota.png" alt="Toyota Logo" class="car-logo">
+            <img src="images/logo-honda.png" alt="Honda Logo" class="car-logo">
+            <img src="images/logo-maruti.png" alt="Maruti Logo" class="car-logo">
+            <img src="images/logo-hyundai.png" alt="Hyundai Logo" class="car-logo">
+            <img src="images/logo-ford.png" alt="Ford Logo" class="car-logo">
+        </div>
+    </div>
+
+    <!-- Home Page -->
+    <div id="home-page" style="display: none;">
+        <header>
+            <img src="images/logo.png" alt="Logo" id="logo">
+            <h1>Car Sales and Inventory Store</h1>
+            <input type="text" id="search-input" placeholder="Search cars..." onkeyup="filterCars()">
+        </header>
+
+        <!-- Filter Section -->
+        <section id="filter-section">
+            <h2>Filter Cars</h2>
+            <select id="price-filter" onchange="filterCars()">
+                <option value="">Price</option>
+                <option value="1000000">Under ₹10,00,000</option>
+                <option value="1500000">Under ₹15,00,000</option>
+                <option value="2000000">Under ₹20,00,000</option>
+            </select>
+            <select id="fuel-type-filter" onchange="filterCars()">
+                <option value="">Fuel Type</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+            </select>
+        </section>
+
+        <!-- Inventory Section -->
+        <section id="inventory">
+            <h2>Available Cars</h2>
+            <div id="inventory-list">
+                <!-- Car Cards with links to detailed pages -->
+                <div class="car-item" data-price="1000000" data-fuel="Petrol">
+                    <a href="cars/car-toyota-corolla.html">
+                        <img src="images/car-toyota-corolla.jpg" alt="Toyota Corolla">
+                        <h3>Toyota Corolla</h3>
+                        <p>Price: ₹10,00,000 <span class="slashed-price">₹12,00,000</span></p>
+                        <p>Distance Traveled: 20,000 km</p>
+                        <p>Fuel Type: Petrol</p>
+                        <p>Stock: 5</p>
+                    </a>
+                </div>
+                <div class="car-item" data-price="1250000" data-fuel="Diesel">
+                    <a href="cars/car-honda-civic.html">
+                        <img src="images/car-honda-civic.jpg" alt="Honda Civic">
+                        <h3>Honda Civic</h3>
+                        <p>Price: ₹12,50,000 <span class="slashed-price">₹14,00,000</span></p>
+                        <p>Distance Traveled: 15,000 km</p>
+                        <p>Fuel Type: Diesel</p>
+                        <p>Stock: 3</p>
+                    </a>
+                </div>
+                <div class="car-item" data-price="800000" data-fuel="Petrol">
+                    <a href="cars/car-maruti-swift.html">
+                        <img src="images/car-maruti-swift.jpg" alt="Maruti Suzuki Swift">
+                        <h3>Maruti Suzuki Swift</h3>
+                        <p>Price: ₹8,00,000 <span class="slashed-price">₹9,50,000</span></p>
+                        <p>Distance Traveled: 30,000 km</p>
+                        <p>Fuel Type: Petrol</p>
+                        <p>Stock: 10</p>
+                    </a>
+                </div>
+                <div class="car-item" data-price="1500000" data-fuel="Diesel">
+                    <a href="cars/car-hyundai-creta.html">
+                        <img src="images/car-hyundai-creta.jpg" alt="Hyundai Creta">
+                        <h3>Hyundai Creta</h3>
+                        <p>Price: ₹15,00,000 <span class="slashed-price">₹16,50,000</span></p>
+                        <p>Distance Traveled: 25,000 km</p>
+                        <p>Fuel Type: Diesel</p>
+                        <p>Stock: 4</p>
+                    </a>
+                </div>
+                <div class="car-item" data-price="950000" data-fuel="Petrol">
+                    <a href="cars/car-ford-ecosport.html">
+                        <img src="images/car-ford-ecosport.jpg" alt="Ford EcoSport">
+                        <h3>Ford EcoSport</h3>
+                        <p>Price: ₹9,50,000 <span class="slashed-price">₹11,00,000</span></p>
+                        <p>Distance Traveled: 18,000 km</p>
+                        <p>Fuel Type: Petrol</p>
+                        <p>Stock: 6</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Suggested Sports Cars Section with 360 View Videos -->
+        <section id="suggested-sports-cars">
+            <h2>Suggested Sports Cars</h2>
+            <div id="suggested-cars-list">
+                <div class="car-video">
+                    <h3>Toyota Corolla 360 View</h3>
+                    <video controls>
+                        <source src="videos/toyota-corolla-360.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="car-video">
+                    <h3>Honda Civic 360 View</h3>
+                    <video controls>
+                        <source src="videos/honda-civic-360.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact-section">
+            <h2>Contact Us</h2>
+            <form id="contact-form" onsubmit="submitForm(event)">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="tel" id="phone" placeholder="Your Phone Number" required>
+                <input type="email" id="email" placeholder="Your Email Address" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </section>
+
+        <!-- Social Media Links -->
+        <footer>
+            <h2>Follow Us</h2>
+            <div id="social-media-links">
+                <a id="whatsapp-link" onclick="openWhatsApp()" style="cursor:pointer;">
+                    <img src="images/whatsapp-icon.png" alt="WhatsApp">
+                </a>
+                <a href="https://www.instagram.com" target="_blank"><img src="images/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript to handle welcome popup and show the homepage
+        function startShopping() {
+            document.getElementById('welcome-popup').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+        }
+
+        // Filter cars based on criteria
+        function filterCars() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const fuelTypeFilter = document.getElementById('fuel-type-filter').value;
+            const searchInput = document.getElementById('search-input').value.toLowerCase();
+
+            document.querySelectorAll('.car-item').forEach(car => {
+                const price = parseInt(car.getAttribute('data-price'));
+                const fuelType = car.getAttribute('data-fuel');
+                const carName = car.querySelector('h3').innerText.toLowerCase();
+
+                const matchesSearch = carName.includes(searchInput);
+                const matchesPrice = !priceFilter || price <= parseInt(priceFilter);
+                const matchesFuel = !fuelTypeFilter || fuelType === fuelTypeFilter;
+
+                car.style.display = matchesSearch && matchesPrice && matchesFuel ? 'block' : 'none';
+            });
+        }
+
+        // Geolocation function to detect user location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            alert(Your current location is Latitude: ${latitude}, Longitude: ${longitude});
+            // Here you can add logic to customize the car listings or recommendations based on location
+        }
+
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        // Call getLocation function when the home page loads
+        window.onload = getLocation;
+
+        // Function to open WhatsApp link with pre-filled message
+        function openWhatsApp() {
+            const defaultNumber = '916291997880'; // Change to your default number
+            const message = encodeURIComponent('Hello! I would like to know more about your car inventory.');
+            const whatsappUrl = https://wa.me/${defaultNumber}?text=${message};
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
